@@ -1,9 +1,12 @@
 from ultralytics import YOLO, RTDETR
 from time import perf_counter
 
-def train_yolo(IDUN, epochs, imgsz):
-    data = "data_idun.yaml" if IDUN else "data_local.yaml"
-    model = YOLO("yolo11n.pt")
+def train_yolo(dataset, model, epochs, imgsz, IDUN):
+    if dataset == "iphone":
+        data = "data_idun_iphone.yaml" if IDUN else "data_local_iphone.yaml"
+    elif dataset == "v1":
+        data = "data_idun_v1.yaml" if IDUN else "data_local_v1.yaml"
+    model = YOLO(model)
     start = perf_counter()
     results = model.train(
         data=data, 
@@ -16,10 +19,12 @@ def train_yolo(IDUN, epochs, imgsz):
     time_elapsed = end - start
     return results, time_elapsed
     
-def train_rt_detr(IDUN, epochs, imgsz):
-    data = "data_idun.yaml" if IDUN else "data_local.yaml"
+def train_rt_detr(dataset, imgsz, epochs, IDUN):
+    if dataset == "iphone":
+        data = "data_idun_iphone.yaml" if IDUN else "data_local_iphone.yaml"
+    elif dataset == "v1":
+        data = "data_idun_v1.yaml" if IDUN else "data_local_v1.yaml"
     model = RTDETR("rtdetr-l.pt")
-    # batch = 2 if imgsz >= 1920 else -1
     start = perf_counter()
     results = model.train(
         data=data, 

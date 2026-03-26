@@ -9,6 +9,8 @@
 #SBATCH --time=24:00:00
 #SBATCH --partition=GPUQ
 #SBATCH --account=share-ie-idi
+#SBATCH --mail-user=kristosn@stud.ntnu.no
+#SBATCH --mail-type=BEGIN,END,FAIL
 
 mkdir -p logs
 
