@@ -40,8 +40,8 @@ def train_rf_detr(dataset, model_name, epochs, resolution, output_dir):
     results = model.train(
         dataset_dir=data,
         epochs=epochs,
-        batch_size=2,
-        grad_accum_steps=8,
+        batch_size=16,
+        grad_accum_steps=1,
         output_dir=output_dir,
         early_stopping=True,
         early_stopping_patience=50

@@ -6,7 +6,7 @@
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=64G
 #SBATCH --gres=gpu:a100:1
-#SBATCH --time=03:00:00
+#SBATCH --time=24:00:00
 #SBATCH --partition=GPUQ
 #SBATCH --account=share-ie-idi
 #SBATCH --mail-user=kristosn@stud.ntnu.no
@@ -17,6 +17,13 @@ mkdir -p logs
 module purge
 module load Python/3.10.8-GCCcore-12.2.0
 source ~/venv/bin/activate
+
+export MASTER_ADDR=$(hostname -s)
+export MASTER_PORT=29500
+export WORLD_SIZE=1
+export RANK=0
+export LOCAL_RANK=0
+
 cd ~/mini-project-snowpoles
 nvidia-smi
 python main.py
