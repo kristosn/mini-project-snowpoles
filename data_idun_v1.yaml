@@ -1,7 +1,0 @@
-path: /cluster/projects/vc/courses/TDT17/ad/Poles2025/roadpoles_v1
-
-train: train/images
-val: valid/images
-
-names: 
-  0: pole

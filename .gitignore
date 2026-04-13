@@ -1,3 +1,4 @@
 **/Poles2025
 *.pt
+*.pth
 __pycache__/
