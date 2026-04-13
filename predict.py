@@ -2,14 +2,16 @@ from ultralytics import YOLO
 from rfdetr import RFDETRNano, RFDETRSmall
 from pathlib import Path
 from PIL import Image, ImageDraw
+from time import perf_counter
 
 # For the rpedict_rf_detr function I have modified the code from: 
 # https://github.com/Harshvardhan580/FineTuning-RFDETRn-CustomDataset
 
 def predict_yolo(model_path, source, project, name, imgsz):
     print("Starting prediction with YOLO...")
+    start = perf_counter()
     model = YOLO(model_path)
-    model.predict(
+    results = model.predict(
         source=source,
         project=project,
         name=name,
@@ -18,6 +20,9 @@ def predict_yolo(model_path, source, project, name, imgsz):
         save_conf=True, # <--- This adds the probability of each predicted box
         exist_ok=True
     )
+    end = perf_counter()
+    time_elapsed = end - start
+    return time_elapsed
 
 def bbox2yolobox(x1, y1, x2, y2, image_w, image_h):
     cx = ((x1 + x2) / 2) / image_w
@@ -54,12 +59,17 @@ def predict_rf_detr(model, model_name, dataset, source, resolution, threshold=0.
     
     image_paths = list(Path(source).glob("*.PNG")) + list(Path(source).glob("*.jpg"))
     
+    predict_times = []
+    
     for image_path in image_paths:
         image = Image.open(image_path).convert("RGB")
         image_width, image_height = image.size
+        start = perf_counter()
         predictions = model.predict(str(image_path), threshold=threshold)
-        
+        end = perf_counter()
+        predict_times.append(end - start)
         label_lines = []
+        
         for i in range(len(predictions.xyxy)):
             x1, y1, x2, y2 = predictions.xyxy[i]
             cx, cy, w, h = bbox2yolobox(x1, y1, x2, y2, image_width, image_height)
@@ -71,6 +81,8 @@ def predict_rf_detr(model, model_name, dataset, source, resolution, threshold=0.
         with open(label_file, "w") as f:
             f.write("\n".join(label_lines))
         draw_bounding_box(image_path, images_dir, predictions)
+    time_elapsed = sum(predict_times)
+    return time_elapsed
             
         
     

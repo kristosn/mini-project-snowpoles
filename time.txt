@@ -1,3 +1,5 @@
+Dataset: v1, Model: yolo26s, imgsz: 640, training time (s): 502.71, IDUN: True
+Dataset: iphone, Model: yolo26s, imgsz: 640, training time (s): 1065.87, IDUN: True
+Dataset: v1, Model: yolo26s, imgsz: 640, training time (s): 692.72, IDUN: True
+Dataset: iphone, Model: yolo26s, imgsz: 640, training time (s): 1529.57, IDUN: True
 
-Dataset: v1, Model: RFDETRSmall, imgsz: 512, training time (s): 7277.28, IDUN: False
-Dataset: v1, Model: RFDETRSmall, imgsz: 512, training time (s): 12646.05, IDUN: False

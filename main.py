@@ -18,11 +18,11 @@ def main():
     #tune_hyperparams("v1", model_path_yolo, epochs, iterations)
     #tune_hyperparams("iphone", model_path_yolo, epochs, iterations)
     
-    # run_yolo("v1", model_path_yolo, imgsz, epochs)
-    # run_yolo("iphone", model_path_yolo, imgsz, epochs)
+    run_yolo("v1", model_path_yolo, imgsz, epochs)
+    run_yolo("iphone", model_path_yolo, imgsz, epochs)
     
-    run_rf_detr("v1", model_name_rfdetr, epochs, resolution)
-    run_rf_detr("iphone", model_name_rfdetr, epochs, resolution)
+    #run_rf_detr("v1", model_name_rfdetr, epochs, resolution)
+    #run_rf_detr("iphone", model_name_rfdetr, epochs, resolution)
     
 if __name__ == "__main__":
     main()

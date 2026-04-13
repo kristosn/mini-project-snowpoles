@@ -6,7 +6,7 @@
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=64G
 #SBATCH --gres=gpu:a100:1
-#SBATCH --time=24:00:00
+#SBATCH --time=03:00:00
 #SBATCH --partition=GPUQ
 #SBATCH --account=share-ie-idi
 #SBATCH --mail-user=kristosn@stud.ntnu.no
