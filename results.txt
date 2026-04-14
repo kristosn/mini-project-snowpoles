@@ -1,20 +1,8 @@
-YOLO26s on v1 dataset with 200 epochs:
-
-maP@50:95 = 69.39% (Used for leaderboard)
-mAP@50 = 95.62
-AR 10 (Average Recall max 10 predictions) = 74.48%
-
 YOLO26s on v1 dataset with 300 epochs:
 
 mAP@50:95 = 73.47% (Used for leaderboard)
 mAP@50 = 97.22
 AR 10 (Average Recall max 10 predictions) = 77.93%
-
-YOLO26s on iphone dataset with 200 epochs:
-
-mAP@50:95 = 70.28% (Used for leaderboard)
-mAP@50 = 88.77
-AR 10 (Average Recall max 10 predictions) = 73.7%
 
 YOLO26s on iphone dataset with 300 epochs:
 
@@ -22,9 +10,14 @@ mAP@50:95 = 70.92% (Used for leaderboard)
 mAP@50 = 88.9
 AR 10 (Average Recall max 10 predictions) = 74.08%
 
-RFDETRSmall on v1 dataset with 200 epochs:
+RFDETRSmall on v1 dataset with 300 epochs:
 
-mAP@50:95 = 64.73% (Used for leaderboard)
-mAP@50 = 94.79
-AR 10 (Average Recall max 10 predictions) = 67.93%
+mAP@50:95 = 64.56% (Used for leaderboard)
+mAP@50 = 99.09
+AR 10 (Average Recall max 10 predictions) = 68.79%
 
+RFDETRSmall on iphone dataset with 300 epochs:
+
+mAP@50:95 = 70.27% (Used for leaderboard)
+mAP@50 = 90.05
+AR 10 (Average Recall max 10 predictions) = 72.5%

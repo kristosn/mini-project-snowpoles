@@ -30,3 +30,11 @@ def run_rf_detr(dataset, model_name, epochs, resolution):
     best_model_path = Path(output_dir) / "checkpoint_best_total.pth"
     time_elapsed_predict = predict_rf_detr(best_model_path, model_name, dataset, PATH_TO_TEST_SET, resolution, threshold=0.5)
     write_to_file(dataset, model_name, resolution, time_elapsed_train, time_elapsed_predict, "time.txt")
+    
+if __name__ == "__main__":
+    import sys
+    dataset = sys.argv[1]       
+    model_name = sys.argv[2]    
+    epochs = int(sys.argv[3])
+    resolution = int(sys.argv[4])
+    run_rf_detr(dataset, model_name, epochs, resolution)

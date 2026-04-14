@@ -1,6 +1,6 @@
-from run_model import run_yolo, run_rf_detr
+from run_model import run_yolo
 from pathlib import Path
-from tune_hyperparams import tune_hyperparams
+import subprocess, sys
 
 def main():
     
@@ -14,12 +14,16 @@ def main():
     model_path_yolo = "yolo26s.pt"
     model_name_rfdetr = "RFDETRSmall"
     
-    run_rf_detr("v1", model_name_rfdetr, epochs, resolution)
-    run_rf_detr("iphone", model_name_rfdetr, epochs, resolution)
+    if IDUN:
+        subprocess.run([sys.executable, "run_model.py", "v1", model_name_rfdetr, str(epochs), str(resolution)], check=True)
+        subprocess.run([sys.executable, "run_model.py", "iphone", model_name_rfdetr, str(epochs), str(resolution)], check=True)
+    else:
+        from run_model import run_rf_detr
+        run_rf_detr("v1", model_name_rfdetr, epochs, resolution)
+        run_rf_detr("iphone", model_name_rfdetr, epochs, resolution)
     
     run_yolo("v1", model_path_yolo, imgsz, epochs)
     run_yolo("iphone", model_path_yolo, imgsz, epochs)
     
 if __name__ == "__main__":
     main()
-    
