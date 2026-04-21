@@ -1,18 +1,18 @@
 # Snow Pole Detection
 
-**Authors:** Kristoffer Sandersen Nyrnes, Stener Thoresen Nordnes
+**Authors:** kristoffer Sandersen Nyrnes and Stener Thoresen Nordnes
 
 Mini-project for **TDT4265: Computer Vision and Deep Learning**.
 
-This project focuses on **real-time object detection of snow poles** in road images from Trondheim.  
-The goal is to detect snow poles in challenging winter conditions, where they can help indicate the road boundaries.
+This project focuses on real-time object detection of snow poles in road images from Trondheim.  
+The goal is to detect snow poles in challenging winter conditions, where they can help indicate road boundaries.
 
 ## Project goal
 
-The task is to train and evaluate object detection models for detecting **snow poles** in images from the **Poles2025** dataset.
+The task is to train and evaluate object detection models for detecting snow poles in images from the **Poles2025** dataset.
 
 We worked with:
-- **1 object class**: `pole`
+- **1 object class:** `pole`
 - object detection on two datasets:
   - `roadpoles_v1`
   - `Road_poles_iPhone`
@@ -22,8 +22,8 @@ We worked with:
 Dataset used:
 - **Poles2025**
 
-The dataset contains annotations in **YOLO format**.  
-For some parts of the project, these annotations were also converted to **COCO format** for compatibility with other models.
+The dataset contains annotations in **YOLO** format.  
+For some parts of the project, these annotations were also converted to **COCO** format for compatibility with other models.
 
 > Note: The dataset is not redistributed in this repository.
 
@@ -38,7 +38,6 @@ These models were trained and evaluated on the snow pole detection task.
 ## Project structure
 
 Example file overview:
-
 - `main.py` – runs the full pipeline
 - `run_model.py` – handles training and prediction for selected models
 - `train.py` – training functions for YOLO and RF-DETR
