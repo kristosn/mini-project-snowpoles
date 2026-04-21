@@ -43,7 +43,7 @@ Example file overview:
 - `run_model.py` – handles training and prediction for selected models
 - `train.py` – training functions for YOLO and RF-DETR
 - `predict.py` – prediction functions
-- `convert_yolo_to_coco.py` – converts YOLO annotations to COCO format
+- `yolo_to_coco.py` – converts YOLO annotations to COCO format
 
 ## How to run
 
