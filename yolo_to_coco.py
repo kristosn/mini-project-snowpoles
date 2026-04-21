@@ -12,6 +12,7 @@ DATASETS = [
 def convert_split(dataset_dir, split):
     images_dir = dataset_dir / split / "images"
     labels_dir = dataset_dir / split / "labels"
+    output_file = dataset_dir / split / "_annotations.coco.json"
 
     if not images_dir.exists():
         print(f"  Skipping {split}: {images_dir} not found")
@@ -19,17 +20,22 @@ def convert_split(dataset_dir, split):
 
     image_entries = []
     annotation_entries = []
-    ann_id = 0
+    annotation_id = 0
 
-    image_files = sorted(list(images_dir.glob("*.jpg")) + list(images_dir.glob("*.PNG")))
+    image_paths = sorted([*images_dir.glob("*.jpg"), *images_dir.glob("*.PNG")])
 
-    for img_id, img_path in enumerate(image_files):
-        with Image.open(img_path) as img:
-            width, height = img.size
+    for image_id, image_path in enumerate(image_paths):
+        with Image.open(image_path) as image:
+            image_width, image_height = image.size
 
-        image_entries.append({"id": img_id, "file_name": f"images/{img_path.name}", "width": width, "height": height})
+        image_entries.append({
+            "id": image_id,
+            "file_name": f"images/{image_path.name}",
+            "width": image_width,
+            "height": image_height
+        })
 
-        label_path = labels_dir / (img_path.stem + ".txt")
+        label_path = labels_dir / f"{image_path.stem}.txt"
         if not label_path.exists():
             continue
 
@@ -37,24 +43,33 @@ def convert_split(dataset_dir, split):
             parts = line.strip().split()
             if len(parts) < 5:
                 continue
+
             class_id = int(parts[0])
-            cx, cy, w, h = map(float, parts[1:5])
-            abs_w = w * width
-            abs_h = h * height
-            abs_x = (cx * width) - (abs_w / 2)
-            abs_y = (cy * height) - (abs_h / 2)
+            center_x, center_y, box_width, box_height = map(float, parts[1:5])
+
+            abs_width = box_width * image_width
+            abs_height = box_height * image_height
+            abs_x = (center_x * image_width) - (abs_width / 2)
+            abs_y = (center_y * image_height) - (abs_height / 2)
+
             annotation_entries.append({
-                "id": ann_id, "image_id": img_id, "category_id": class_id,
-                "bbox": [abs_x, abs_y, abs_w, abs_h],
-                "area": abs_w * abs_h, "iscrowd": 0,
+                "id": annotation_id,
+                "image_id": image_id,
+                "category_id": class_id,
+                "bbox": [abs_x, abs_y, abs_width, abs_height],
+                "area": abs_width * abs_height,
+                "iscrowd": 0,
             })
-            ann_id += 1
+            annotation_id += 1
 
-    out_path = dataset_dir / split / "_annotations.coco.json"
-    with open(out_path, "w") as f:
-        json.dump({"images": image_entries, "annotations": annotation_entries, "categories": CATEGORIES}, f, indent=2)
+    with open(output_file, "w") as f:
+        json.dump({
+            "images": image_entries,
+            "annotations": annotation_entries,
+            "categories": CATEGORIES
+        }, f, indent=2)
 
-    print(f"  [{split}] {len(image_entries)} images, {len(annotation_entries)} annotations -> {out_path}")
+    print(f"  [{split}] {len(image_entries)} images, {len(annotation_entries)} annotations -> {output_file}")
 
 for dataset in DATASETS:
     dataset_dir = Path(dataset)
