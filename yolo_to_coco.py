@@ -21,11 +21,7 @@ def convert_split(dataset_dir, split):
     annotation_entries = []
     ann_id = 0
 
-    image_files = sorted(
-        list(images_dir.glob("*.jpg")) + list(images_dir.glob("*.JPG")) +
-        list(images_dir.glob("*.jpeg")) + list(images_dir.glob("*.png")) +
-        list(images_dir.glob("*.PNG"))
-    )
+    image_files = sorted(list(images_dir.glob("*.jpg")) + list(images_dir.glob("*.PNG")))
 
     for img_id, img_path in enumerate(image_files):
         with Image.open(img_path) as img:
@@ -58,10 +54,10 @@ def convert_split(dataset_dir, split):
     with open(out_path, "w") as f:
         json.dump({"images": image_entries, "annotations": annotation_entries, "categories": CATEGORIES}, f, indent=2)
 
-    print(f"  [{split}] {len(image_entries)} images, {len(annotation_entries)} annotations → {out_path}")
+    print(f"  [{split}] {len(image_entries)} images, {len(annotation_entries)} annotations -> {out_path}")
 
-for ds in DATASETS:
-    dataset_dir = Path(ds)
+for dataset in DATASETS:
+    dataset_dir = Path(dataset)
     print(f"\nConverting: {dataset_dir}")
     for split in ("train", "valid", "test"):
         convert_split(dataset_dir, split)

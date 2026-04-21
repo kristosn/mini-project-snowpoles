@@ -4,9 +4,6 @@ from pathlib import Path
 from PIL import Image, ImageDraw
 from time import perf_counter
 
-# For the rpedict_rf_detr function I have modified the code from: 
-# https://github.com/Harshvardhan580/FineTuning-RFDETRn-CustomDataset
-
 def predict_yolo(model_path, source, project, name, imgsz):
     print("Starting prediction with YOLO...")
     start = perf_counter()
@@ -24,7 +21,7 @@ def predict_yolo(model_path, source, project, name, imgsz):
     time_elapsed = end - start
     return time_elapsed
 
-def bbox2yolobox(x1, y1, x2, y2, image_w, image_h):
+def bbox_to_yolobox(x1, y1, x2, y2, image_w, image_h):
     cx = ((x1 + x2) / 2) / image_w
     cy = ((y1 + y2) / 2) / image_h
     w  = (x2 - x1) / image_w
@@ -72,7 +69,7 @@ def predict_rf_detr(model, model_name, dataset, source, resolution, threshold=0.
         
         for i in range(len(predictions.xyxy)):
             x1, y1, x2, y2 = predictions.xyxy[i]
-            cx, cy, w, h = bbox2yolobox(x1, y1, x2, y2, image_width, image_height)
+            cx, cy, w, h = bbox_to_yolobox(x1, y1, x2, y2, image_width, image_height)
             class_id = int(predictions.class_id[i])
             conf = float(predictions.confidence[i])
             label_lines.append(f"{class_id} {cx:.6f} {cy:.6f} {w:.6f} {h:.6f} {conf:.6f}")

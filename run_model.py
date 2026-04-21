@@ -33,8 +33,15 @@ def run_rf_detr(dataset, model_name, epochs, resolution):
     
 if __name__ == "__main__":
     import sys
-    dataset = sys.argv[1]       
-    model_name = sys.argv[2]    
-    epochs = int(sys.argv[3])
-    resolution = int(sys.argv[4])
-    run_rf_detr(dataset, model_name, epochs, resolution)
+    dataset = sys.argv[1]
+    model_name = sys.argv[2]
+    arg3 = int(sys.argv[3])
+    arg4 = int(sys.argv[4])
+    if model_name.endswith(".pt"):
+        imgsz = arg3
+        epochs = arg4
+        run_yolo(dataset, model_name, imgsz, epochs)
+    else:
+        epochs = arg3
+        resolution = arg4
+        run_rf_detr(dataset, model_name, epochs, resolution)
