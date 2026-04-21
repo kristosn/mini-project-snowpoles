@@ -2,3 +2,5 @@
 *.pt
 *.pth
 __pycache__/
+predict_rfdetrsmall_iphone
+predict_rfdetrsmall_v1
