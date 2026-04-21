@@ -1,5 +1,7 @@
 # Snow Pole Detection
 
+**Authors:** Kristoffer Sandersen Nyrnes, Stener Thoresen Nordnes
+
 Mini-project for **TDT4265: Computer Vision and Deep Learning**.
 
 This project focuses on **real-time object detection of snow poles** in road images from Trondheim.  
