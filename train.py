@@ -8,8 +8,7 @@ def train_yolo(dataset, model_path, epochs, imgsz, project):
     if dataset == "iphone":
         data = "Poles2025/Road_poles_iPhone/data.yaml"
     elif dataset == "v1":
-        data= "Poles2025/roadpoles_v1/data.yaml"       
-        
+        data= "Poles2025/roadpoles_v1/data.yaml"        
     model = YOLO(model_path)
     start = perf_counter()
     results = model.train(
@@ -31,7 +30,6 @@ def train_rf_detr(dataset, model_name, epochs, resolution, output_dir):
         data = "Poles2025/Road_poles_iPhone"
     elif dataset == "v1":
         data = "Poles2025/roadpoles_v1"
-        
     if model_name.lower() == "rfdetrnano":
         model = RFDETRNano(resolution=resolution)
     elif model_name.lower() == "rfdetrsmall":
