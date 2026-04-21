@@ -1,6 +1,6 @@
 # Snow Pole Detection
 
-**Authors:** kristoffer Sandersen Nyrnes and Stener Thoresen Nordnes
+**Authors:** Kristoffer Sandersen Nyrnes and Stener Thoresen Nordnes
 
 Mini-project for **TDT4265: Computer Vision and Deep Learning**.
 
