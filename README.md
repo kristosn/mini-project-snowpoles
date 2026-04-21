@@ -42,7 +42,6 @@ Example file overview:
 - `train.py` – training functions for YOLO and RF-DETR
 - `predict.py` – prediction functions
 - `convert_yolo_to_coco.py` – converts YOLO annotations to COCO format
-- `time.txt` – stores training and prediction time
 
 ## How to run
 
