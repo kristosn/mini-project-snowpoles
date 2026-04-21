@@ -30,8 +30,8 @@ For some parts of the project, these annotations were also converted to **COCO f
 ## Models
 
 We used the following models:
-- **YOLO**
-- **RF-DETR**
+- **YOLO26s**
+- **RF-DETR Small**
 
 These models were trained and evaluated on the snow pole detection task.
 
