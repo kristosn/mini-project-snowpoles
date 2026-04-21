@@ -44,6 +44,7 @@ Example file overview:
 - `train.py` – training functions for YOLO and RF-DETR
 - `predict.py` – prediction functions
 - `yolo_to_coco.py` – converts YOLO annotations to COCO format
+- `*.ipynb` – notebooks for exploratory data analysis, visualizations, and sustainability metrics
 
 ## How to run
 
