@@ -23,7 +23,7 @@ Dataset used:
 - **Poles2025**
 
 The dataset contains annotations in **YOLO** format.  
-For some parts of the project, these annotations were also converted to **COCO** format for compatibility with other models.
+For the RF-DETR model, the annotations needed to be converted to COCO format to ensure compatibility with the model’s expected input format.
 
 > Note: The dataset is not redistributed in this repository.
 
