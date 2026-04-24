@@ -2,7 +2,7 @@
 
 Mini-project for **TDT4265: Computer Vision and Deep Learning** by Kristoffer Sandersen Nyrnes and Stener Thoresen Nordnes.
 
-We have train and evaluate object detection models for detecting snow poles in winter road images from Trondheim using the **Poles2025** dataset.
+This project focused on detecting snow poles in winter road images from Trondheim using object detection models trained on the Poles2025 dataset.
 
 ## Models
 
