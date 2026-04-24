@@ -1,53 +1,21 @@
 # Snow Pole Detection
 
-**Authors:** Kristoffer Sandersen Nyrnes and Stener Thoresen Nordnes
+Mini-project for **TDT4265: Computer Vision and Deep Learning** by Kristoffer Sandersen Nyrnes and Stener Thoresen Nordnes.
 
-Mini-project for **TDT4265: Computer Vision and Deep Learning**.
-
-This project focuses on real-time object detection of snow poles in road images from Trondheim.  
-The goal is to detect snow poles in challenging winter conditions, where they can help indicate road boundaries.
-
-## Project goal
-
-The task is to train and evaluate object detection models for detecting snow poles in images from the **Poles2025** dataset.
-
-We worked with:
-- **1 object class:** `pole`
-- object detection on two datasets:
-  - `roadpoles_v1`
-  - `Road_poles_iPhone`
-
-## Dataset
-
-Dataset used:
-- **Poles2025**
-
-The dataset contains annotations in **YOLO** format.  
-For the RF-DETR model, the annotations needed to be converted to COCO format to ensure compatibility with the model’s expected input format.
-
-> Note: The dataset is not redistributed in this repository.
+We have train and evaluate object detection models for detecting snow poles in winter road images from Trondheim using the **Poles2025** dataset.
 
 ## Models
 
-We used the following models:
-- **YOLO26s**
-- **RF-DETR Small**
+- YOLO26s
+- RF-DETR Small
 
-These models were trained and evaluated on the snow pole detection task.
+## Dataset
 
-## Project structure
+- Poles2025
+- 1 class: `pole`
+- YOLO annotations converted to COCO format for RF-DETR
 
-Example file overview:
-- `main.py` – runs the full pipeline
-- `run_model.py` – handles training and prediction for selected models
-- `train.py` – training functions for YOLO and RF-DETR
-- `predict.py` – prediction functions
-- `yolo_to_coco.py` – converts YOLO annotations to COCO format
-- `*.ipynb` – notebooks for exploratory data analysis, visualizations, and sustainability metrics
-
-## How to run
-
-Run the full project with:
+## Run
 
 ```bash
 python main.py
